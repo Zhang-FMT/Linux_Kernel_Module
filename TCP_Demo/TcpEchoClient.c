@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 		}
 		memset(buffer, 0, 1000);
 	}
-	eixt(0);
+	exit(0);
 }
 
 
