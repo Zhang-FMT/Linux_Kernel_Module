@@ -31,7 +31,7 @@ int main (int argc, char *argv[])
 		exit(1);
 	}
 
-	if((!SocketFD = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	if((iSocketFD = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	{
 		printf("socket error\n");
 		exit(1);
@@ -40,7 +40,7 @@ int main (int argc, char *argv[])
 	memset(&sockaddr_inServerAddress, 0, sizeof(sockaddr_inServerAddress));
 
 	sockaddr_inServerAddress.sin_family = AF_INET;
-	sockaddr_inServerAddress.sin_addr.s_addr = \htonl(INADDR_ANY);
+	sockaddr_inServerAddress.sin_addr.s_addr = htonl(INADDR_ANY);
 	sockaddr_inServerAddress.sin_port = htons(atoi(argv[1]));
 	
 	if(bind(iSocketFD, (struct sockaddr*) & sockaddr_inServerAddress, sizeof(sockaddr_inServerAddress)) < 0)
@@ -59,7 +59,7 @@ int main (int argc, char *argv[])
 	while(iServerActive)
 	{
 		socklen_tClientLen = sizeof(sockaddr_inClientAddress);
-		if((iConnectedFD = accept(iSocketFD, (struct sockaddr *) & sockaddr_inClientAddress. &socklen_tClient)) < 0)
+		if((iConnectedFD = accept(iSocketFD, (struct sockaddr *) &sockaddr_inClientAddress, &socklen_tClientLen)) < 0)
 		{
 			printf("accept error\n");
 			exit(1);
